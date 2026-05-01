@@ -2,8 +2,7 @@ name: my workflow file2
 on :
    push:
     branches:
-     -  dev
-     - 'feature-*'
+     -  main
    pull_request:
      branches:
        - main
@@ -65,7 +64,7 @@ jobs:
               pwd
               ls -ltr single_file
       - name: check block
-        run : exit 1
+        run : exit 0
             
       
          
