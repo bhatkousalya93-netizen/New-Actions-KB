@@ -1,6 +1,9 @@
 name: my workflow file2
 on :
    push:
+    branches:
+     -  dev
+     - 'feature-*'
 jobs:
   job1: 
      name: JOB1
