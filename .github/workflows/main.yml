@@ -64,6 +64,8 @@ jobs:
         run : |
               pwd
               ls -ltr single_file
+      - name: check block
+        run : exit 1
             
       
          
