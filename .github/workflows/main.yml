@@ -77,4 +77,5 @@ jobs:
       - name: Referring to the secrets
         run : |
               echo "[Info] the application password is ${{ secrets.APP_PSWRD }}
+              echo "[Info] referred secrets"
          
