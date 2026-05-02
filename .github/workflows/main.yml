@@ -76,6 +76,6 @@ jobs:
               echo "[Info] Once deployment is doen, app pot $APP_PORT is open"
       - name: Referring to the secrets
         run : |
-              echo "[Info] the application password is ${{ secrets.APP_PSWRD }}
+              echo "[Info] the application password is ${{ secrets.APP_PSWRD }}"
               echo "[Info] referred secrets"
          
