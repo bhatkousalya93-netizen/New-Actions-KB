@@ -74,5 +74,7 @@ jobs:
         run : |
               echo "[Info] running deployment for $ENV_TYPE with user $APP_USER"
               echo "[Info] Once deployment is doen, app pot $APP_PORT is open"
-      
+      - name: Referring to the secrets
+        run : |
+              echo "[Info] the application password is ${{ secrets.APP_PSWRD }}
          
