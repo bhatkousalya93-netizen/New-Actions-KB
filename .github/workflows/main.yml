@@ -1,6 +1,16 @@
 name: my workflow file2
 on :
    push:
+    branches:
+     -  main
+   pull_request:
+     branches:
+       - main
+
+env:
+  ENV_TYPE: DEV
+  APP_USER: KB
+  APP_PORT: 80
 jobs:
   job1: 
      name: JOB1
@@ -38,6 +48,12 @@ jobs:
         run : |
               pwd
               ls -ltr
+      - name: Referring the built in variables
+        run : |
+          echo "[Info] triggered by ${{github.event_name}}"
+          echo "[Info] new changes are added by ${{github.actor}} in ${{github.ref_name}} branch"
+          echo "[Info] Current step is running on ${{runner.os}}"
+          echo "[Info] current job id is ${{job.check_run_id}}"
   job3: 
      name: JOB3
      needs: job1
@@ -58,6 +74,33 @@ jobs:
         run : |
               pwd
               ls -ltr single_file
-            
-      
-         
+      - name: check block
+        run : exit 0
+      - name: Referring environment variables
+        run : |
+              echo "[Info] running deployment for $ENV_TYPE with user $APP_USER"
+              echo "[Info] Once deployment is doen, app pot $APP_PORT is open"
+      - name: Referring to the secrets
+        run : |
+              echo "[Info] the application password is ${{ secrets.APP_PSWRD }}"
+              echo "[Info] referred secrets"
+  staging: 
+     name : STAGE_DEPLOYMENT
+     runs-on: ubuntu-latest
+     steps:
+      - name: referring environment variables
+        run : echo "[Info] running deployment on ${{vars.HOST}} using ${{vars.USER}}"
+      - name: Referring environment secrets
+        run : echo "[Info] Password for  ${{vars.USER}} is ${{secrets.PASSWORD}}"
+     environment: 
+      name :  STAGING
+  production: 
+     name : PRODUCTION_DEPLOYMENT
+     runs-on: ubuntu-latest
+     steps:
+      - name: referring environment variables
+        run : echo "[Info] running deployment on ${{vars.HOST}} using ${{vars.USER}}"
+      - name: Referring environment secrets
+        run : echo "[Info] Password for  ${{vars.USER}} is ${{secrets.PASSWORD}}"
+     environment: 
+      name :  PRODUCTION
