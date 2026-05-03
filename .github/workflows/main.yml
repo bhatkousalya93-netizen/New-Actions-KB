@@ -84,4 +84,23 @@ jobs:
         run : |
               echo "[Info] the application password is ${{ secrets.APP_PSWRD }}"
               echo "[Info] referred secrets"
-         
+  staging: 
+     name : STAGE_DEPLOYMENT
+     runs-on: ubuntu-latest
+     steps:
+      - name: referring environment variables
+        run : echo "[Info] running deployment on ${{vars.HOST}} using ${{vars.USER}}"
+      - name: Referring environment secrets
+        run : echo "[Info] Password for  ${{vars.USER}} is ${{secrets.PASSWORD}}"
+     environment: 
+      name :  STAGING
+  production: 
+     name : PRODUCTION_DEPLOYMENT
+     runs-on: ubuntu-latest
+     steps:
+      - name: referring environment variables
+        run : echo "[Info] running deployment on ${{vars.HOST}} using ${{vars.USER}}"
+      - name: Referring environment secrets
+        run : echo "[Info] Password for  ${{vars.USER}} is ${{secrets.PASSWORD}}"
+     environment: 
+      name :  PRODUCTION
