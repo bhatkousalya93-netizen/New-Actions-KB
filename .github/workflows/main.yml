@@ -101,7 +101,7 @@ jobs:
       - name: referring environment variables
         run : echo "[Info] running deployment on ${{vars.HOST}} using ${{vars.USER}}"
       - name: Referring environment secrets
-        run : echo "[Info] Password for  ${{vars.USER}} is ${{secrets.PASSWORD}}"
+        run : echo "[Info] Password for  ${{vars.USER}} is ${{secrets.PASSWORD}}."
      environment: 
       name :  PRODUCTION
   sonarqube:
